@@ -213,6 +213,14 @@ COPY --chown=ue4:ue4 \
     dev/entrypoint.sh \
     /usr/local/bin/entrypoint.sh
 
+# COPY PUBLISH DEPTH IMAGE ROS2 PACKAGE
+COPY --chown=ue4:ue4 \
+    dev/pub_depth /home/ue4/ros_ws/src/pub_depth
+
+RUN \
+    cd ${HOME}/ros_ws \
+    && colcon build --symlink-install
+
 # CREATE SYMBOLIC LINK FOR QUICK ACCESS
 # THEN ADD ADDITIONAL LINES ON SHELL RC FOR ROS2 USAGE
 RUN \
@@ -235,7 +243,7 @@ CMD [ "/usr/local/bin/entrypoint.sh" ]
 # DOCKER_BUILDKIT=1 docker build \
 # --build-arg BASEIMAGE=adamrehn/ue4-runtime \
 # --build-arg BASETAG=20.04-cudagl11-x11 \
-# -t kestr3l/airsim:dev-1.8.1 \
+# -t jociiiii/airsim:dev-1.8.2 \
 # -f ./Dockerfile ../
 
 # ------ BUILD COMMAND(gzdrone) ------

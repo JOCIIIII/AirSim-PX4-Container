@@ -119,7 +119,8 @@ else
         else
             echo -e "\033[31mINFO\t[AIRSIM] PIXELSTREAM IS NOT SET."
             echo -e "\033[31mINFO\t[AIRSIM] RUNNING AIRSIM ROS2 NODE LOCALLY..."
-            ros2 launch airsim_ros_pkgs airsim_node.launch.py
+            source /home/ue4/ros_ws/install/setup.bash
+            ros2 launch airsim_ros_pkgs airsim_node.launch.py & ros2 run pub_depth pub_depth
         fi
     fi
 fi
