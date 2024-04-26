@@ -217,6 +217,11 @@ COPY --chown=ue4:ue4 \
 COPY --chown=ue4:ue4 \
     dev/pub_depth /home/ue4/ros_ws/src/pub_depth
 
+COPY --chown=ue4:ue4 \
+    dev/setup_path.py /home/ue4/scripts/setup_path.py
+COPY --chown=ue4:ue4 \
+    dev/spawnObject.py /home/ue4/scripts/spawnObject.py
+
 RUN \
     cd ${HOME}/ros_ws \
     && colcon build --symlink-install
@@ -224,8 +229,7 @@ RUN \
 # CREATE SYMBOLIC LINK FOR QUICK ACCESS
 # THEN ADD ADDITIONAL LINES ON SHELL RC FOR ROS2 USAGE
 RUN \
-    mkdir /home/ue4/scripts \
-    && sudo ln -s /usr/local/bin/entrypoint.sh /home/ue4/scripts/entrypoint.sh \
+    sudo ln -s /usr/local/bin/entrypoint.sh /home/ue4/scripts/entrypoint.sh \
     && echo "source /opt/ros/galactic/setup.bash" >> ${HOME}/.bashrc \
     && echo "source ${HOME}/AirSim/ros2/install/setup.bash" >> ${HOME}/.bashrc
 

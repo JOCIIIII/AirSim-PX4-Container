@@ -104,6 +104,9 @@ else
         echo -e "\033[32mINFO\t[AIRSIM] SIMULATION SUCCESSFULLY STARTED."
         echo -e "\033[32mINFO\t[AIRSIM] RUNNING AIRSIM ROS2 BRIDGE."
         
+        python3 /home/ue4/scripts/spawnObject.py -a Pine_01 -n 60 -r 240 240 -d 0
+	    sleep 10s
+	
         source /opt/ros/galactic/setup.bash
         source /home/ue4/AirSim/ros2/install/setup.bash
 
